@@ -17,7 +17,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
@@ -25,7 +25,7 @@
             <meta name="viewport" content="width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <style>
-                #map_71f3b88ed8409299a76b0b79db4ea710 {
+                #map_e6cda76e237a72de1782354a5864d3b1 {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -37,32 +37,36 @@
         
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-locatecontrol/0.66.2/L.Control.Locate.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-locatecontrol/0.66.2/L.Control.Locate.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-search@2.9.7/dist/leaflet-search.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-search@2.9.7/dist/leaflet-search.min.css"/>
 </head>
 <body>
     
     
      <div style="
      position: fixed; 
-     bottom: 50px; right: 10px; width: 250px; height: 160px; 
-     background-color: white; border:2px solid grey; z-index:9999; font-size:12px;
-     border-radius: 10px; padding: 10px; font-family: 'Segoe UI', sans-serif;
-     box-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+     bottom: 30px; right: 10px; width: 150px; 
+     z-index:9999; font-size:11px;
+     border-radius: 12px; padding: 10px; font-family: 'Segoe UI', sans-serif;
+     background: linear-gradient(145deg, #ffffff, #e6e6e6);
+     box-shadow: 5px 5px 10px #d1d1d1, -2px -2px 10px #ffffff;
+     border: 1px solid rgba(255,255,255,0.5);
      ">
-     <h4 style="margin-top:0; border-bottom: 1px solid #ddd; padding-bottom:5px;">Legenda de Cores</h4>
-     <p><i class="fa fa-circle" style="color:green"></i> Cliente Ativo - Comprou no mês</p>
-     <p><i class="fa fa-circle" style="color:red"></i> Cliente Ativo - Não comprou no mês</p>
-     <p><i class="fa fa-circle" style="color:lightgray"></i> Cliente Inativo</p>
+     <h4 style="margin:0 0 8px 0; border-bottom: 1px solid #ccc; padding-bottom:3px; font-size:12px;">Legenda</h4>
+     <p style="margin:4px 0;"><i class="fa fa-circle" style="color:green; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);"></i> Comprou</p>
+     <p style="margin:4px 0;"><i class="fa fa-circle" style="color:red; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);"></i> Não comprou</p>
+     <p style="margin:4px 0;"><i class="fa fa-circle" style="color:lightgray; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);"></i> Inativo</p>
      </div>
      
     
-            <div class="folium-map" id="map_71f3b88ed8409299a76b0b79db4ea710" ></div>
+            <div class="folium-map" id="map_e6cda76e237a72de1782354a5864d3b1" ></div>
         
 </body>
 <script>
     
     
-            var map_71f3b88ed8409299a76b0b79db4ea710 = L.map(
-                "map_71f3b88ed8409299a76b0b79db4ea710",
+            var map_e6cda76e237a72de1782354a5864d3b1 = L.map(
+                "map_e6cda76e237a72de1782354a5864d3b1",
                 {
                     center: [-15.7938, -47.8827],
                     crs: L.CRS.EPSG3857,
@@ -76,289 +80,328 @@
 
         
     
-            var tile_layer_a50558e97ede71d22bc0f0af45c99651 = L.tileLayer(
+            var tile_layer_2db2fc8347d7ee154c132412e2712097 = L.tileLayer(
                 "https://mt1.google.com/vt/lyrs=m\u0026x={x}\u0026y={y}\u0026z={z}",
-                {"attribution": "Google Maps", "detectRetina": false, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+                {"attribution": "Google Maps", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
             );
         
     
-            tile_layer_a50558e97ede71d22bc0f0af45c99651.addTo(map_71f3b88ed8409299a76b0b79db4ea710);
+            tile_layer_2db2fc8347d7ee154c132412e2712097.addTo(map_e6cda76e237a72de1782354a5864d3b1);
         
     
-            var locate_control_c87f216086aaef15308877e0e37179b0 = L.control.locate(
+            var locate_control_766736bb4505cfecdcbad1d1e20fd43c = L.control.locate(
                 {"flyTo": true, "keepCurrentZoomLevel": true}
-            ).addTo(map_71f3b88ed8409299a76b0b79db4ea710);
+            ).addTo(map_e6cda76e237a72de1782354a5864d3b1);
             
         
     
-            var marker_d98fb8536f6edeaff34f613a9fa3c56d = L.marker(
-                [-15.815, -47.893],
+            var feature_group_2bf17f1525248035927b76f5f4bd90c7 = L.featureGroup(
                 {}
-            ).addTo(map_71f3b88ed8409299a76b0b79db4ea710);
+            );
         
     
-            var icon_cd767548939b62744ce8dab184f5ae95 = L.AwesomeMarkers.icon(
+            var marker_b34f1da7eb9224bbe833997c1a08cbee = L.marker(
+                [-15.815, -47.893],
+                {"name": "Super. Alvorada (Asa Sul) 1020 12.345.678/0001-99"}
+            ).addTo(feature_group_2bf17f1525248035927b76f5f4bd90c7);
+        
+    
+            var icon_b0c001f00269b3c2c12b00f0b667916a = L.AwesomeMarkers.icon(
                 {"extraClasses": "fa-rotate-0", "icon": "shopping-cart", "iconColor": "white", "markerColor": "green", "prefix": "fa"}
             );
-            marker_d98fb8536f6edeaff34f613a9fa3c56d.setIcon(icon_cd767548939b62744ce8dab184f5ae95);
+            marker_b34f1da7eb9224bbe833997c1a08cbee.setIcon(icon_b0c001f00269b3c2c12b00f0b667916a);
         
     
-        var popup_d553c46bab0a0f18900ffa7ebe1e4db2 = L.popup({"maxWidth": 320});
+        var popup_add4ecf03a7d4a24a18f12ca72fa698c = L.popup({"maxWidth": 320});
 
         
             
-                var html_6025878944c52070a3e6804facf4c807 = $(`<div id="html_6025878944c52070a3e6804facf4c807" style="width: 100.0%; height: 100.0%;">     <div style="width: 280px; font-family: 'Segoe UI', sans-serif; font-size: 12px; line-height: 1.5;">         <h4 style="margin:0; color:#1a73e8; font-size:15px; border-bottom: 2px solid #1a73e8; padding-bottom: 5px;">Super. Alvorada (Asa Sul)</h4>                  <div style="margin-top: 8px;">             <b>CNPJ:</b> 12.345.678/0001-99<br>             <b>Código:</b> 1020 | <b>Setor:</b> S01<br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Representante:</b> João Silva<br>             <b>Cadastro:</b> 10/01/2020<br>             <b>Visita:</b> Segunda (Semanal)<br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Financeiro:</b> Boleto (28 dias)<br>             <b>Limite:</b> R$ 15.000,00<br>             <b>Freezers:</b> 3<br>             <b>Status Mês:</b> <span style="color:green;font-weight:bold;">Comprou</span><br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Contato:</b> (61) 99999-0001<br>             <b>E-mail:</b> cli01@teste.com.br         </div>          <a href="https://www.google.com/maps/dir/?api=1&destination=-15.815,-47.893"             target="_blank"             style="display:block; text-align:center; background:#1a73e8; color:white; padding:10px; border-radius:4px; text-decoration:none; font-weight:bold; margin-top:10px;">            VER TRAJETO GOOGLE MAPS         </a>     </div>     </div>`)[0];
-                popup_d553c46bab0a0f18900ffa7ebe1e4db2.setContent(html_6025878944c52070a3e6804facf4c807);
+                var html_505df781773502f92262e4b666f21122 = $(`<div id="html_505df781773502f92262e4b666f21122" style="width: 100.0%; height: 100.0%;">     <div style="width: 280px; font-family: 'Segoe UI', sans-serif; font-size: 12px; line-height: 1.5;">         <h4 style="margin:0; color:#1a73e8; font-size:15px; border-bottom: 2px solid #1a73e8; padding-bottom: 5px;">Super. Alvorada (Asa Sul)</h4>                  <div style="margin-top: 8px;">             <b>CNPJ:</b> 12.345.678/0001-99<br>             <b>Código:</b> 1020 | <b>Setor:</b> S01<br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Representante:</b> João Silva<br>             <b>Cadastro:</b> 10/01/2020<br>             <b>Visita:</b> Segunda (Semanal)<br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Financeiro:</b> Boleto (28 dias)<br>             <b>Limite:</b> R$ 15.000,00<br>             <b>Freezers:</b> 3<br>             <b>Status Mês:</b> <span style="color:green;font-weight:bold;">Comprou</span><br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Contato:</b> (61) 99999-0001<br>             <b>E-mail:</b> cli01@teste.com.br         </div>          <a href="https://www.google.com/maps/dir/?api=1&destination=-15.815,-47.893"             target="_blank"             style="display:block; text-align:center; background:#1a73e8; color:white; padding:10px; border-radius:4px; text-decoration:none; font-weight:bold; margin-top:10px;">            VER TRAJETO GOOGLE MAPS         </a>     </div>     </div>`)[0];
+                popup_add4ecf03a7d4a24a18f12ca72fa698c.setContent(html_505df781773502f92262e4b666f21122);
             
         
 
-        marker_d98fb8536f6edeaff34f613a9fa3c56d.bindPopup(popup_d553c46bab0a0f18900ffa7ebe1e4db2)
+        marker_b34f1da7eb9224bbe833997c1a08cbee.bindPopup(popup_add4ecf03a7d4a24a18f12ca72fa698c)
         ;
 
         
     
     
-            var marker_aebc164eb52552abb7b4e22de2dfb430 = L.marker(
+            var marker_6adefb4a323680b52d1d313c262ddf0a = L.marker(
                 [-15.833, -48.057],
-                {}
-            ).addTo(map_71f3b88ed8409299a76b0b79db4ea710);
+                {"name": "Padaria Central (Taguati.) 1021 98.765.432/0001-00"}
+            ).addTo(feature_group_2bf17f1525248035927b76f5f4bd90c7);
         
     
-            var icon_6ef126db9d55fd896938ca9a37fb782c = L.AwesomeMarkers.icon(
+            var icon_bc4c54888afb8ee348236b419df116c1 = L.AwesomeMarkers.icon(
                 {"extraClasses": "fa-rotate-0", "icon": "shopping-cart", "iconColor": "white", "markerColor": "red", "prefix": "fa"}
             );
-            marker_aebc164eb52552abb7b4e22de2dfb430.setIcon(icon_6ef126db9d55fd896938ca9a37fb782c);
+            marker_6adefb4a323680b52d1d313c262ddf0a.setIcon(icon_bc4c54888afb8ee348236b419df116c1);
         
     
-        var popup_52b1160fe56c1bf8a057363e2afa0aa4 = L.popup({"maxWidth": 320});
+        var popup_029a180b4608deaed5ae2e4789f33bb5 = L.popup({"maxWidth": 320});
 
         
             
-                var html_65fab24817b1097cbd66788798750263 = $(`<div id="html_65fab24817b1097cbd66788798750263" style="width: 100.0%; height: 100.0%;">     <div style="width: 280px; font-family: 'Segoe UI', sans-serif; font-size: 12px; line-height: 1.5;">         <h4 style="margin:0; color:#1a73e8; font-size:15px; border-bottom: 2px solid #1a73e8; padding-bottom: 5px;">Padaria Central (Taguati.)</h4>                  <div style="margin-top: 8px;">             <b>CNPJ:</b> 98.765.432/0001-00<br>             <b>Código:</b> 1021 | <b>Setor:</b> S03<br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Representante:</b> Maria Oliveira<br>             <b>Cadastro:</b> 15/05/2021<br>             <b>Visita:</b> Quarta (Quinzenal)<br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Financeiro:</b> Pix (-)<br>             <b>Limite:</b> R$ 5.000,00<br>             <b>Freezers:</b> 1<br>             <b>Status Mês:</b> <span style="color:red;font-weight:bold;">Não Comprou</span><br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Contato:</b> (61) 99999-0002<br>             <b>E-mail:</b> cli02@teste.com.br         </div>          <a href="https://www.google.com/maps/dir/?api=1&destination=-15.833,-48.057"             target="_blank"             style="display:block; text-align:center; background:#1a73e8; color:white; padding:10px; border-radius:4px; text-decoration:none; font-weight:bold; margin-top:10px;">            VER TRAJETO GOOGLE MAPS         </a>     </div>     </div>`)[0];
-                popup_52b1160fe56c1bf8a057363e2afa0aa4.setContent(html_65fab24817b1097cbd66788798750263);
+                var html_7c71a2594755a44917136a8acc8bffc6 = $(`<div id="html_7c71a2594755a44917136a8acc8bffc6" style="width: 100.0%; height: 100.0%;">     <div style="width: 280px; font-family: 'Segoe UI', sans-serif; font-size: 12px; line-height: 1.5;">         <h4 style="margin:0; color:#1a73e8; font-size:15px; border-bottom: 2px solid #1a73e8; padding-bottom: 5px;">Padaria Central (Taguati.)</h4>                  <div style="margin-top: 8px;">             <b>CNPJ:</b> 98.765.432/0001-00<br>             <b>Código:</b> 1021 | <b>Setor:</b> S03<br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Representante:</b> Maria Oliveira<br>             <b>Cadastro:</b> 15/05/2021<br>             <b>Visita:</b> Quarta (Quinzenal)<br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Financeiro:</b> Pix (-)<br>             <b>Limite:</b> R$ 5.000,00<br>             <b>Freezers:</b> 1<br>             <b>Status Mês:</b> <span style="color:red;font-weight:bold;">Não Comprou</span><br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Contato:</b> (61) 99999-0002<br>             <b>E-mail:</b> cli02@teste.com.br         </div>          <a href="https://www.google.com/maps/dir/?api=1&destination=-15.833,-48.057"             target="_blank"             style="display:block; text-align:center; background:#1a73e8; color:white; padding:10px; border-radius:4px; text-decoration:none; font-weight:bold; margin-top:10px;">            VER TRAJETO GOOGLE MAPS         </a>     </div>     </div>`)[0];
+                popup_029a180b4608deaed5ae2e4789f33bb5.setContent(html_7c71a2594755a44917136a8acc8bffc6);
             
         
 
-        marker_aebc164eb52552abb7b4e22de2dfb430.bindPopup(popup_52b1160fe56c1bf8a057363e2afa0aa4)
+        marker_6adefb4a323680b52d1d313c262ddf0a.bindPopup(popup_029a180b4608deaed5ae2e4789f33bb5)
         ;
 
         
     
     
-            var marker_fad4135566bbc7830d2c1309580f888d = L.marker(
+            var marker_752fdc9d437e3013fb9758b21d8daa19 = L.marker(
                 [-15.82, -48.11],
-                {}
-            ).addTo(map_71f3b88ed8409299a76b0b79db4ea710);
+                {"name": "Mini Mercado Silva (Ceil\u00e2n.) 1022 11.222.333/0001-11"}
+            ).addTo(feature_group_2bf17f1525248035927b76f5f4bd90c7);
         
     
-            var icon_e2b16b7f20a830179a4799829483d36d = L.AwesomeMarkers.icon(
+            var icon_50855e3844a3d530e92eb9bc7fc84dbc = L.AwesomeMarkers.icon(
                 {"extraClasses": "fa-rotate-0", "icon": "shopping-cart", "iconColor": "white", "markerColor": "green", "prefix": "fa"}
             );
-            marker_fad4135566bbc7830d2c1309580f888d.setIcon(icon_e2b16b7f20a830179a4799829483d36d);
+            marker_752fdc9d437e3013fb9758b21d8daa19.setIcon(icon_50855e3844a3d530e92eb9bc7fc84dbc);
         
     
-        var popup_873ad6eb5e04ce5cf7cac208c26832dc = L.popup({"maxWidth": 320});
+        var popup_a66e424e90113c50fd85df634869e767 = L.popup({"maxWidth": 320});
 
         
             
-                var html_03512c0cbb16844cddf143133b2bc07a = $(`<div id="html_03512c0cbb16844cddf143133b2bc07a" style="width: 100.0%; height: 100.0%;">     <div style="width: 280px; font-family: 'Segoe UI', sans-serif; font-size: 12px; line-height: 1.5;">         <h4 style="margin:0; color:#1a73e8; font-size:15px; border-bottom: 2px solid #1a73e8; padding-bottom: 5px;">Mini Mercado Silva (Ceilân.)</h4>                  <div style="margin-top: 8px;">             <b>CNPJ:</b> 11.222.333/0001-11<br>             <b>Código:</b> 1022 | <b>Setor:</b> S01<br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Representante:</b> João Silva<br>             <b>Cadastro:</b> 20/11/2023<br>             <b>Visita:</b> Sexta (Mensal)<br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Financeiro:</b> Boleto (15 dias)<br>             <b>Limite:</b> R$ 2.500,00<br>             <b>Freezers:</b> 0<br>             <b>Status Mês:</b> <span style="color:green;font-weight:bold;">Comprou</span><br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Contato:</b> (61) 99999-0003<br>             <b>E-mail:</b> cli03@teste.com.br         </div>          <a href="https://www.google.com/maps/dir/?api=1&destination=-15.82,-48.11"             target="_blank"             style="display:block; text-align:center; background:#1a73e8; color:white; padding:10px; border-radius:4px; text-decoration:none; font-weight:bold; margin-top:10px;">            VER TRAJETO GOOGLE MAPS         </a>     </div>     </div>`)[0];
-                popup_873ad6eb5e04ce5cf7cac208c26832dc.setContent(html_03512c0cbb16844cddf143133b2bc07a);
+                var html_37f9e1af589902ce06992327f9fdca33 = $(`<div id="html_37f9e1af589902ce06992327f9fdca33" style="width: 100.0%; height: 100.0%;">     <div style="width: 280px; font-family: 'Segoe UI', sans-serif; font-size: 12px; line-height: 1.5;">         <h4 style="margin:0; color:#1a73e8; font-size:15px; border-bottom: 2px solid #1a73e8; padding-bottom: 5px;">Mini Mercado Silva (Ceilân.)</h4>                  <div style="margin-top: 8px;">             <b>CNPJ:</b> 11.222.333/0001-11<br>             <b>Código:</b> 1022 | <b>Setor:</b> S01<br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Representante:</b> João Silva<br>             <b>Cadastro:</b> 20/11/2023<br>             <b>Visita:</b> Sexta (Mensal)<br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Financeiro:</b> Boleto (15 dias)<br>             <b>Limite:</b> R$ 2.500,00<br>             <b>Freezers:</b> 0<br>             <b>Status Mês:</b> <span style="color:green;font-weight:bold;">Comprou</span><br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Contato:</b> (61) 99999-0003<br>             <b>E-mail:</b> cli03@teste.com.br         </div>          <a href="https://www.google.com/maps/dir/?api=1&destination=-15.82,-48.11"             target="_blank"             style="display:block; text-align:center; background:#1a73e8; color:white; padding:10px; border-radius:4px; text-decoration:none; font-weight:bold; margin-top:10px;">            VER TRAJETO GOOGLE MAPS         </a>     </div>     </div>`)[0];
+                popup_a66e424e90113c50fd85df634869e767.setContent(html_37f9e1af589902ce06992327f9fdca33);
             
         
 
-        marker_fad4135566bbc7830d2c1309580f888d.bindPopup(popup_873ad6eb5e04ce5cf7cac208c26832dc)
+        marker_752fdc9d437e3013fb9758b21d8daa19.bindPopup(popup_a66e424e90113c50fd85df634869e767)
         ;
 
         
     
     
-            var marker_3d9c2473df89ce050f2597833434ed6e = L.marker(
+            var marker_9792796d07830dc81a84a5359248e5d6 = L.marker(
                 [-15.825, -47.98],
-                {}
-            ).addTo(map_71f3b88ed8409299a76b0b79db4ea710);
+                {"name": "A\u00e7ougue Ouro (Guar\u00e1) 1023 44.555.666/0001-22"}
+            ).addTo(feature_group_2bf17f1525248035927b76f5f4bd90c7);
         
     
-            var icon_20a2e40759a5167a776bb8bc5e1bc539 = L.AwesomeMarkers.icon(
+            var icon_741dc4e85d3b1de281a0c62156c3a543 = L.AwesomeMarkers.icon(
                 {"extraClasses": "fa-rotate-0", "icon": "shopping-cart", "iconColor": "white", "markerColor": "green", "prefix": "fa"}
             );
-            marker_3d9c2473df89ce050f2597833434ed6e.setIcon(icon_20a2e40759a5167a776bb8bc5e1bc539);
+            marker_9792796d07830dc81a84a5359248e5d6.setIcon(icon_741dc4e85d3b1de281a0c62156c3a543);
         
     
-        var popup_6b4bd1eef840f0dbe839b039d33da058 = L.popup({"maxWidth": 320});
+        var popup_bccdec308632d63ce76ee3638d17967f = L.popup({"maxWidth": 320});
 
         
             
-                var html_9238e8baa7e94ef9e84ef33e2ecea291 = $(`<div id="html_9238e8baa7e94ef9e84ef33e2ecea291" style="width: 100.0%; height: 100.0%;">     <div style="width: 280px; font-family: 'Segoe UI', sans-serif; font-size: 12px; line-height: 1.5;">         <h4 style="margin:0; color:#1a73e8; font-size:15px; border-bottom: 2px solid #1a73e8; padding-bottom: 5px;">Açougue Ouro (Guará)</h4>                  <div style="margin-top: 8px;">             <b>CNPJ:</b> 44.555.666/0001-22<br>             <b>Código:</b> 1023 | <b>Setor:</b> S02<br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Representante:</b> Carlos Souza<br>             <b>Cadastro:</b> 05/02/2022<br>             <b>Visita:</b> Terça (Semanal)<br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Financeiro:</b> Boleto (21 dias)<br>             <b>Limite:</b> R$ 8.000,00<br>             <b>Freezers:</b> 2<br>             <b>Status Mês:</b> <span style="color:green;font-weight:bold;">Comprou</span><br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Contato:</b> (61) 99999-0004<br>             <b>E-mail:</b> cli04@teste.com.br         </div>          <a href="https://www.google.com/maps/dir/?api=1&destination=-15.825,-47.98"             target="_blank"             style="display:block; text-align:center; background:#1a73e8; color:white; padding:10px; border-radius:4px; text-decoration:none; font-weight:bold; margin-top:10px;">            VER TRAJETO GOOGLE MAPS         </a>     </div>     </div>`)[0];
-                popup_6b4bd1eef840f0dbe839b039d33da058.setContent(html_9238e8baa7e94ef9e84ef33e2ecea291);
+                var html_f0a267b463234926eeb696b6fc1cb437 = $(`<div id="html_f0a267b463234926eeb696b6fc1cb437" style="width: 100.0%; height: 100.0%;">     <div style="width: 280px; font-family: 'Segoe UI', sans-serif; font-size: 12px; line-height: 1.5;">         <h4 style="margin:0; color:#1a73e8; font-size:15px; border-bottom: 2px solid #1a73e8; padding-bottom: 5px;">Açougue Ouro (Guará)</h4>                  <div style="margin-top: 8px;">             <b>CNPJ:</b> 44.555.666/0001-22<br>             <b>Código:</b> 1023 | <b>Setor:</b> S02<br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Representante:</b> Carlos Souza<br>             <b>Cadastro:</b> 05/02/2022<br>             <b>Visita:</b> Terça (Semanal)<br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Financeiro:</b> Boleto (21 dias)<br>             <b>Limite:</b> R$ 8.000,00<br>             <b>Freezers:</b> 2<br>             <b>Status Mês:</b> <span style="color:green;font-weight:bold;">Comprou</span><br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Contato:</b> (61) 99999-0004<br>             <b>E-mail:</b> cli04@teste.com.br         </div>          <a href="https://www.google.com/maps/dir/?api=1&destination=-15.825,-47.98"             target="_blank"             style="display:block; text-align:center; background:#1a73e8; color:white; padding:10px; border-radius:4px; text-decoration:none; font-weight:bold; margin-top:10px;">            VER TRAJETO GOOGLE MAPS         </a>     </div>     </div>`)[0];
+                popup_bccdec308632d63ce76ee3638d17967f.setContent(html_f0a267b463234926eeb696b6fc1cb437);
             
         
 
-        marker_3d9c2473df89ce050f2597833434ed6e.bindPopup(popup_6b4bd1eef840f0dbe839b039d33da058)
+        marker_9792796d07830dc81a84a5359248e5d6.bindPopup(popup_bccdec308632d63ce76ee3638d17967f)
         ;
 
         
     
     
-            var marker_e73d4f8d26160a19f069bf9c6d388c8e = L.marker(
+            var marker_21898e3587f616cd91dee4407cedc744 = L.marker(
                 [-15.65, -47.79],
-                {}
-            ).addTo(map_71f3b88ed8409299a76b0b79db4ea710);
+                {"name": "Mercearia Vila (Sobradinho) 1024 77.888.999/0001-33"}
+            ).addTo(feature_group_2bf17f1525248035927b76f5f4bd90c7);
         
     
-            var icon_278bad179366e9315a0d003296a7cfa8 = L.AwesomeMarkers.icon(
+            var icon_9331b71cb8224f452376b78d76bd2381 = L.AwesomeMarkers.icon(
                 {"extraClasses": "fa-rotate-0", "icon": "shopping-cart", "iconColor": "white", "markerColor": "lightgray", "prefix": "fa"}
             );
-            marker_e73d4f8d26160a19f069bf9c6d388c8e.setIcon(icon_278bad179366e9315a0d003296a7cfa8);
+            marker_21898e3587f616cd91dee4407cedc744.setIcon(icon_9331b71cb8224f452376b78d76bd2381);
         
     
-        var popup_1ee520c1dfead2605ba8f22b61f9b87e = L.popup({"maxWidth": 320});
+        var popup_495dd9a4054d94d8bfd5cb3be81dee38 = L.popup({"maxWidth": 320});
 
         
             
-                var html_10330ef4193b33b492838d320170b77f = $(`<div id="html_10330ef4193b33b492838d320170b77f" style="width: 100.0%; height: 100.0%;">     <div style="width: 280px; font-family: 'Segoe UI', sans-serif; font-size: 12px; line-height: 1.5;">         <h4 style="margin:0; color:#1a73e8; font-size:15px; border-bottom: 2px solid #1a73e8; padding-bottom: 5px;">Mercearia Vila (Sobradinho)</h4>                  <div style="margin-top: 8px;">             <b>CNPJ:</b> 77.888.999/0001-33<br>             <b>Código:</b> 1024 | <b>Setor:</b> S03<br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Representante:</b> Maria Oliveira<br>             <b>Cadastro:</b> 12/08/2020<br>             <b>Visita:</b> Quinta (Semanal)<br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Financeiro:</b> Pix (-)<br>             <b>Limite:</b> R$ 4.500,00<br>             <b>Freezers:</b> 1<br>             <b>Status Mês:</b> <span style="color:red;font-weight:bold;">Não Comprou</span><br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Contato:</b> (61) 99999-0005<br>             <b>E-mail:</b> cli05@teste.com.br         </div>          <a href="https://www.google.com/maps/dir/?api=1&destination=-15.65,-47.79"             target="_blank"             style="display:block; text-align:center; background:#1a73e8; color:white; padding:10px; border-radius:4px; text-decoration:none; font-weight:bold; margin-top:10px;">            VER TRAJETO GOOGLE MAPS         </a>     </div>     </div>`)[0];
-                popup_1ee520c1dfead2605ba8f22b61f9b87e.setContent(html_10330ef4193b33b492838d320170b77f);
+                var html_4696857f6f3a3aa386448bcabcda4d8d = $(`<div id="html_4696857f6f3a3aa386448bcabcda4d8d" style="width: 100.0%; height: 100.0%;">     <div style="width: 280px; font-family: 'Segoe UI', sans-serif; font-size: 12px; line-height: 1.5;">         <h4 style="margin:0; color:#1a73e8; font-size:15px; border-bottom: 2px solid #1a73e8; padding-bottom: 5px;">Mercearia Vila (Sobradinho)</h4>                  <div style="margin-top: 8px;">             <b>CNPJ:</b> 77.888.999/0001-33<br>             <b>Código:</b> 1024 | <b>Setor:</b> S03<br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Representante:</b> Maria Oliveira<br>             <b>Cadastro:</b> 12/08/2020<br>             <b>Visita:</b> Quinta (Semanal)<br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Financeiro:</b> Pix (-)<br>             <b>Limite:</b> R$ 4.500,00<br>             <b>Freezers:</b> 1<br>             <b>Status Mês:</b> <span style="color:red;font-weight:bold;">Não Comprou</span><br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Contato:</b> (61) 99999-0005<br>             <b>E-mail:</b> cli05@teste.com.br         </div>          <a href="https://www.google.com/maps/dir/?api=1&destination=-15.65,-47.79"             target="_blank"             style="display:block; text-align:center; background:#1a73e8; color:white; padding:10px; border-radius:4px; text-decoration:none; font-weight:bold; margin-top:10px;">            VER TRAJETO GOOGLE MAPS         </a>     </div>     </div>`)[0];
+                popup_495dd9a4054d94d8bfd5cb3be81dee38.setContent(html_4696857f6f3a3aa386448bcabcda4d8d);
             
         
 
-        marker_e73d4f8d26160a19f069bf9c6d388c8e.bindPopup(popup_1ee520c1dfead2605ba8f22b61f9b87e)
+        marker_21898e3587f616cd91dee4407cedc744.bindPopup(popup_495dd9a4054d94d8bfd5cb3be81dee38)
         ;
 
         
     
     
-            var marker_76b2a822887d7ecd160c5ea5af866466 = L.marker(
+            var marker_270eadadd42086e1f925de537f95c1cd = L.marker(
                 [-15.84, -48.02],
-                {}
-            ).addTo(map_71f3b88ed8409299a76b0b79db4ea710);
+                {"name": "Hortifruti Nat. (\u00c1guas Cl.) 1025 10.203.040/0001-50"}
+            ).addTo(feature_group_2bf17f1525248035927b76f5f4bd90c7);
         
     
-            var icon_87ec42274d10e6824c500c6141377dbf = L.AwesomeMarkers.icon(
+            var icon_c9417f924d32f8dd97d0b0a339d676b2 = L.AwesomeMarkers.icon(
                 {"extraClasses": "fa-rotate-0", "icon": "shopping-cart", "iconColor": "white", "markerColor": "green", "prefix": "fa"}
             );
-            marker_76b2a822887d7ecd160c5ea5af866466.setIcon(icon_87ec42274d10e6824c500c6141377dbf);
+            marker_270eadadd42086e1f925de537f95c1cd.setIcon(icon_c9417f924d32f8dd97d0b0a339d676b2);
         
     
-        var popup_bd7777c7f3107bd3ae476fa36f8b7a00 = L.popup({"maxWidth": 320});
+        var popup_9d33ef9e725b66dc841e877bc210b465 = L.popup({"maxWidth": 320});
 
         
             
-                var html_90b7d638c4e98ec40a5c31ce9190ae9d = $(`<div id="html_90b7d638c4e98ec40a5c31ce9190ae9d" style="width: 100.0%; height: 100.0%;">     <div style="width: 280px; font-family: 'Segoe UI', sans-serif; font-size: 12px; line-height: 1.5;">         <h4 style="margin:0; color:#1a73e8; font-size:15px; border-bottom: 2px solid #1a73e8; padding-bottom: 5px;">Hortifruti Nat. (Águas Cl.)</h4>                  <div style="margin-top: 8px;">             <b>CNPJ:</b> 10.203.040/0001-50<br>             <b>Código:</b> 1025 | <b>Setor:</b> S04<br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Representante:</b> Ana Costa<br>             <b>Cadastro:</b> 30/03/2023<br>             <b>Visita:</b> Segunda (Quinzenal)<br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Financeiro:</b> Boleto (30 dias)<br>             <b>Limite:</b> R$ 10.000,00<br>             <b>Freezers:</b> 4<br>             <b>Status Mês:</b> <span style="color:green;font-weight:bold;">Comprou</span><br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Contato:</b> (61) 99999-0006<br>             <b>E-mail:</b> cli06@teste.com.br         </div>          <a href="https://www.google.com/maps/dir/?api=1&destination=-15.84,-48.02"             target="_blank"             style="display:block; text-align:center; background:#1a73e8; color:white; padding:10px; border-radius:4px; text-decoration:none; font-weight:bold; margin-top:10px;">            VER TRAJETO GOOGLE MAPS         </a>     </div>     </div>`)[0];
-                popup_bd7777c7f3107bd3ae476fa36f8b7a00.setContent(html_90b7d638c4e98ec40a5c31ce9190ae9d);
+                var html_e42270b465a42eb32fe1b10f458bc046 = $(`<div id="html_e42270b465a42eb32fe1b10f458bc046" style="width: 100.0%; height: 100.0%;">     <div style="width: 280px; font-family: 'Segoe UI', sans-serif; font-size: 12px; line-height: 1.5;">         <h4 style="margin:0; color:#1a73e8; font-size:15px; border-bottom: 2px solid #1a73e8; padding-bottom: 5px;">Hortifruti Nat. (Águas Cl.)</h4>                  <div style="margin-top: 8px;">             <b>CNPJ:</b> 10.203.040/0001-50<br>             <b>Código:</b> 1025 | <b>Setor:</b> S04<br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Representante:</b> Ana Costa<br>             <b>Cadastro:</b> 30/03/2023<br>             <b>Visita:</b> Segunda (Quinzenal)<br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Financeiro:</b> Boleto (30 dias)<br>             <b>Limite:</b> R$ 10.000,00<br>             <b>Freezers:</b> 4<br>             <b>Status Mês:</b> <span style="color:green;font-weight:bold;">Comprou</span><br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Contato:</b> (61) 99999-0006<br>             <b>E-mail:</b> cli06@teste.com.br         </div>          <a href="https://www.google.com/maps/dir/?api=1&destination=-15.84,-48.02"             target="_blank"             style="display:block; text-align:center; background:#1a73e8; color:white; padding:10px; border-radius:4px; text-decoration:none; font-weight:bold; margin-top:10px;">            VER TRAJETO GOOGLE MAPS         </a>     </div>     </div>`)[0];
+                popup_9d33ef9e725b66dc841e877bc210b465.setContent(html_e42270b465a42eb32fe1b10f458bc046);
             
         
 
-        marker_76b2a822887d7ecd160c5ea5af866466.bindPopup(popup_bd7777c7f3107bd3ae476fa36f8b7a00)
+        marker_270eadadd42086e1f925de537f95c1cd.bindPopup(popup_9d33ef9e725b66dc841e877bc210b465)
         ;
 
         
     
     
-            var marker_612047fb3bec7c81bbe98480c1960a33 = L.marker(
+            var marker_ab68fc4fc5c45e744ccf543622158294 = L.marker(
                 [-15.76, -47.87],
-                {}
-            ).addTo(map_71f3b88ed8409299a76b0b79db4ea710);
+                {"name": "Posto Sul (Asa Norte) 1026 60.708.090/0001-60"}
+            ).addTo(feature_group_2bf17f1525248035927b76f5f4bd90c7);
         
     
-            var icon_9a7eaab3ef283547d5b4246bb1a6620c = L.AwesomeMarkers.icon(
+            var icon_e1324b1f5d0ca9baa5f6ee958710264b = L.AwesomeMarkers.icon(
                 {"extraClasses": "fa-rotate-0", "icon": "shopping-cart", "iconColor": "white", "markerColor": "lightgray", "prefix": "fa"}
             );
-            marker_612047fb3bec7c81bbe98480c1960a33.setIcon(icon_9a7eaab3ef283547d5b4246bb1a6620c);
+            marker_ab68fc4fc5c45e744ccf543622158294.setIcon(icon_e1324b1f5d0ca9baa5f6ee958710264b);
         
     
-        var popup_2835030688c423542c5945c183603123 = L.popup({"maxWidth": 320});
+        var popup_39a6083c55a2c8355e2da1798f267836 = L.popup({"maxWidth": 320});
 
         
             
-                var html_41a51c264f12710a28d5deaf1a852574 = $(`<div id="html_41a51c264f12710a28d5deaf1a852574" style="width: 100.0%; height: 100.0%;">     <div style="width: 280px; font-family: 'Segoe UI', sans-serif; font-size: 12px; line-height: 1.5;">         <h4 style="margin:0; color:#1a73e8; font-size:15px; border-bottom: 2px solid #1a73e8; padding-bottom: 5px;">Posto Sul (Asa Norte)</h4>                  <div style="margin-top: 8px;">             <b>CNPJ:</b> 60.708.090/0001-60<br>             <b>Código:</b> 1026 | <b>Setor:</b> S02<br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Representante:</b> Carlos Souza<br>             <b>Cadastro:</b> 18/07/2021<br>             <b>Visita:</b> Quarta (Mensal)<br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Financeiro:</b> Pix (-)<br>             <b>Limite:</b> R$ 3.000,00<br>             <b>Freezers:</b> 1<br>             <b>Status Mês:</b> <span style="color:red;font-weight:bold;">Não Comprou</span><br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Contato:</b> (61) 99999-0007<br>             <b>E-mail:</b> cli07@teste.com.br         </div>          <a href="https://www.google.com/maps/dir/?api=1&destination=-15.76,-47.87"             target="_blank"             style="display:block; text-align:center; background:#1a73e8; color:white; padding:10px; border-radius:4px; text-decoration:none; font-weight:bold; margin-top:10px;">            VER TRAJETO GOOGLE MAPS         </a>     </div>     </div>`)[0];
-                popup_2835030688c423542c5945c183603123.setContent(html_41a51c264f12710a28d5deaf1a852574);
+                var html_2f29f613708a974468d0dca87caf2024 = $(`<div id="html_2f29f613708a974468d0dca87caf2024" style="width: 100.0%; height: 100.0%;">     <div style="width: 280px; font-family: 'Segoe UI', sans-serif; font-size: 12px; line-height: 1.5;">         <h4 style="margin:0; color:#1a73e8; font-size:15px; border-bottom: 2px solid #1a73e8; padding-bottom: 5px;">Posto Sul (Asa Norte)</h4>                  <div style="margin-top: 8px;">             <b>CNPJ:</b> 60.708.090/0001-60<br>             <b>Código:</b> 1026 | <b>Setor:</b> S02<br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Representante:</b> Carlos Souza<br>             <b>Cadastro:</b> 18/07/2021<br>             <b>Visita:</b> Quarta (Mensal)<br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Financeiro:</b> Pix (-)<br>             <b>Limite:</b> R$ 3.000,00<br>             <b>Freezers:</b> 1<br>             <b>Status Mês:</b> <span style="color:red;font-weight:bold;">Não Comprou</span><br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Contato:</b> (61) 99999-0007<br>             <b>E-mail:</b> cli07@teste.com.br         </div>          <a href="https://www.google.com/maps/dir/?api=1&destination=-15.76,-47.87"             target="_blank"             style="display:block; text-align:center; background:#1a73e8; color:white; padding:10px; border-radius:4px; text-decoration:none; font-weight:bold; margin-top:10px;">            VER TRAJETO GOOGLE MAPS         </a>     </div>     </div>`)[0];
+                popup_39a6083c55a2c8355e2da1798f267836.setContent(html_2f29f613708a974468d0dca87caf2024);
             
         
 
-        marker_612047fb3bec7c81bbe98480c1960a33.bindPopup(popup_2835030688c423542c5945c183603123)
+        marker_ab68fc4fc5c45e744ccf543622158294.bindPopup(popup_39a6083c55a2c8355e2da1798f267836)
         ;
 
         
     
     
-            var marker_c605a4e265a9c1bc8434d2d5945b7d6d = L.marker(
+            var marker_ddf58f46621e20037f139a50af0fafc1 = L.marker(
                 [-16.02, -48.06],
-                {}
-            ).addTo(map_71f3b88ed8409299a76b0b79db4ea710);
+                {"name": "Lanchonete Z\u00e9 (Gama) 1027 13.141.516/0001-70"}
+            ).addTo(feature_group_2bf17f1525248035927b76f5f4bd90c7);
         
     
-            var icon_d41154d2814b5be02a70d9b4bd541c5b = L.AwesomeMarkers.icon(
+            var icon_b0ecdac8c8d298dce7758d26aa9d8f22 = L.AwesomeMarkers.icon(
                 {"extraClasses": "fa-rotate-0", "icon": "shopping-cart", "iconColor": "white", "markerColor": "lightgray", "prefix": "fa"}
             );
-            marker_c605a4e265a9c1bc8434d2d5945b7d6d.setIcon(icon_d41154d2814b5be02a70d9b4bd541c5b);
+            marker_ddf58f46621e20037f139a50af0fafc1.setIcon(icon_b0ecdac8c8d298dce7758d26aa9d8f22);
         
     
-        var popup_ea17f2d9311791af138de3a72c001984 = L.popup({"maxWidth": 320});
+        var popup_e6632e47212f1066aa456a22c3b8273d = L.popup({"maxWidth": 320});
 
         
             
-                var html_133f94e40ff4dae024befa00d3c42985 = $(`<div id="html_133f94e40ff4dae024befa00d3c42985" style="width: 100.0%; height: 100.0%;">     <div style="width: 280px; font-family: 'Segoe UI', sans-serif; font-size: 12px; line-height: 1.5;">         <h4 style="margin:0; color:#1a73e8; font-size:15px; border-bottom: 2px solid #1a73e8; padding-bottom: 5px;">Lanchonete Zé (Gama)</h4>                  <div style="margin-top: 8px;">             <b>CNPJ:</b> 13.141.516/0001-70<br>             <b>Código:</b> 1027 | <b>Setor:</b> S04<br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Representante:</b> Ana Costa<br>             <b>Cadastro:</b> 22/09/2022<br>             <b>Visita:</b> Sem visitas (Sem visitas)<br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Financeiro:</b> Dinheiro (-)<br>             <b>Limite:</b> R$ 1.200,00<br>             <b>Freezers:</b> 0<br>             <b>Status Mês:</b> <span style="color:red;font-weight:bold;">Não Comprou</span><br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Contato:</b> (61) 99999-0008<br>             <b>E-mail:</b> cli08@teste.com.br         </div>          <a href="https://www.google.com/maps/dir/?api=1&destination=-16.02,-48.06"             target="_blank"             style="display:block; text-align:center; background:#1a73e8; color:white; padding:10px; border-radius:4px; text-decoration:none; font-weight:bold; margin-top:10px;">            VER TRAJETO GOOGLE MAPS         </a>     </div>     </div>`)[0];
-                popup_ea17f2d9311791af138de3a72c001984.setContent(html_133f94e40ff4dae024befa00d3c42985);
+                var html_12bae0d0cf2171484b638d5a7130ad94 = $(`<div id="html_12bae0d0cf2171484b638d5a7130ad94" style="width: 100.0%; height: 100.0%;">     <div style="width: 280px; font-family: 'Segoe UI', sans-serif; font-size: 12px; line-height: 1.5;">         <h4 style="margin:0; color:#1a73e8; font-size:15px; border-bottom: 2px solid #1a73e8; padding-bottom: 5px;">Lanchonete Zé (Gama)</h4>                  <div style="margin-top: 8px;">             <b>CNPJ:</b> 13.141.516/0001-70<br>             <b>Código:</b> 1027 | <b>Setor:</b> S04<br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Representante:</b> Ana Costa<br>             <b>Cadastro:</b> 22/09/2022<br>             <b>Visita:</b> Sem visitas (Sem visitas)<br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Financeiro:</b> Dinheiro (-)<br>             <b>Limite:</b> R$ 1.200,00<br>             <b>Freezers:</b> 0<br>             <b>Status Mês:</b> <span style="color:red;font-weight:bold;">Não Comprou</span><br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Contato:</b> (61) 99999-0008<br>             <b>E-mail:</b> cli08@teste.com.br         </div>          <a href="https://www.google.com/maps/dir/?api=1&destination=-16.02,-48.06"             target="_blank"             style="display:block; text-align:center; background:#1a73e8; color:white; padding:10px; border-radius:4px; text-decoration:none; font-weight:bold; margin-top:10px;">            VER TRAJETO GOOGLE MAPS         </a>     </div>     </div>`)[0];
+                popup_e6632e47212f1066aa456a22c3b8273d.setContent(html_12bae0d0cf2171484b638d5a7130ad94);
             
         
 
-        marker_c605a4e265a9c1bc8434d2d5945b7d6d.bindPopup(popup_ea17f2d9311791af138de3a72c001984)
+        marker_ddf58f46621e20037f139a50af0fafc1.bindPopup(popup_e6632e47212f1066aa456a22c3b8273d)
         ;
 
         
     
     
-            var marker_1be63d7164f5f2b520ed26021a10bea1 = L.marker(
+            var marker_17cd51dfbcee6cf95e98e6a64ac834b1 = L.marker(
                 [-15.88, -48.08],
-                {}
-            ).addTo(map_71f3b88ed8409299a76b0b79db4ea710);
+                {"name": "Rest. Sabor (Samambaia) 1028 17.181.920/0001-80"}
+            ).addTo(feature_group_2bf17f1525248035927b76f5f4bd90c7);
         
     
-            var icon_8c40e1bb3716da82520484d29dab8338 = L.AwesomeMarkers.icon(
+            var icon_2dbf2a396ebf82cba7a05d67de0771a6 = L.AwesomeMarkers.icon(
                 {"extraClasses": "fa-rotate-0", "icon": "shopping-cart", "iconColor": "white", "markerColor": "green", "prefix": "fa"}
             );
-            marker_1be63d7164f5f2b520ed26021a10bea1.setIcon(icon_8c40e1bb3716da82520484d29dab8338);
+            marker_17cd51dfbcee6cf95e98e6a64ac834b1.setIcon(icon_2dbf2a396ebf82cba7a05d67de0771a6);
         
     
-        var popup_27a4dbe66df1789dceb76b6191a1e07a = L.popup({"maxWidth": 320});
+        var popup_b9def794066a1de98d6b16ae245ba925 = L.popup({"maxWidth": 320});
 
         
             
-                var html_16271a36449d2e5e5688bf58bf694e59 = $(`<div id="html_16271a36449d2e5e5688bf58bf694e59" style="width: 100.0%; height: 100.0%;">     <div style="width: 280px; font-family: 'Segoe UI', sans-serif; font-size: 12px; line-height: 1.5;">         <h4 style="margin:0; color:#1a73e8; font-size:15px; border-bottom: 2px solid #1a73e8; padding-bottom: 5px;">Rest. Sabor (Samambaia)</h4>                  <div style="margin-top: 8px;">             <b>CNPJ:</b> 17.181.920/0001-80<br>             <b>Código:</b> 1028 | <b>Setor:</b> S01<br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Representante:</b> João Silva<br>             <b>Cadastro:</b> 01/12/2023<br>             <b>Visita:</b> Sexta (Semanal)<br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Financeiro:</b> Boleto (7 dias)<br>             <b>Limite:</b> R$ 6.000,00<br>             <b>Freezers:</b> 2<br>             <b>Status Mês:</b> <span style="color:green;font-weight:bold;">Comprou</span><br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Contato:</b> (61) 99999-0009<br>             <b>E-mail:</b> cli09@teste.com.br         </div>          <a href="https://www.google.com/maps/dir/?api=1&destination=-15.88,-48.08"             target="_blank"             style="display:block; text-align:center; background:#1a73e8; color:white; padding:10px; border-radius:4px; text-decoration:none; font-weight:bold; margin-top:10px;">            VER TRAJETO GOOGLE MAPS         </a>     </div>     </div>`)[0];
-                popup_27a4dbe66df1789dceb76b6191a1e07a.setContent(html_16271a36449d2e5e5688bf58bf694e59);
+                var html_eaa965b5e21d240069f7f3a5a79fc7aa = $(`<div id="html_eaa965b5e21d240069f7f3a5a79fc7aa" style="width: 100.0%; height: 100.0%;">     <div style="width: 280px; font-family: 'Segoe UI', sans-serif; font-size: 12px; line-height: 1.5;">         <h4 style="margin:0; color:#1a73e8; font-size:15px; border-bottom: 2px solid #1a73e8; padding-bottom: 5px;">Rest. Sabor (Samambaia)</h4>                  <div style="margin-top: 8px;">             <b>CNPJ:</b> 17.181.920/0001-80<br>             <b>Código:</b> 1028 | <b>Setor:</b> S01<br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Representante:</b> João Silva<br>             <b>Cadastro:</b> 01/12/2023<br>             <b>Visita:</b> Sexta (Semanal)<br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Financeiro:</b> Boleto (7 dias)<br>             <b>Limite:</b> R$ 6.000,00<br>             <b>Freezers:</b> 2<br>             <b>Status Mês:</b> <span style="color:green;font-weight:bold;">Comprou</span><br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Contato:</b> (61) 99999-0009<br>             <b>E-mail:</b> cli09@teste.com.br         </div>          <a href="https://www.google.com/maps/dir/?api=1&destination=-15.88,-48.08"             target="_blank"             style="display:block; text-align:center; background:#1a73e8; color:white; padding:10px; border-radius:4px; text-decoration:none; font-weight:bold; margin-top:10px;">            VER TRAJETO GOOGLE MAPS         </a>     </div>     </div>`)[0];
+                popup_b9def794066a1de98d6b16ae245ba925.setContent(html_eaa965b5e21d240069f7f3a5a79fc7aa);
             
         
 
-        marker_1be63d7164f5f2b520ed26021a10bea1.bindPopup(popup_27a4dbe66df1789dceb76b6191a1e07a)
+        marker_17cd51dfbcee6cf95e98e6a64ac834b1.bindPopup(popup_b9def794066a1de98d6b16ae245ba925)
         ;
 
         
     
     
-            var marker_1d0bcd23995fdce42bf567d66519b56f = L.marker(
+            var marker_16da17ae83d8dfc24a8346fb7f11a6ae = L.marker(
                 [-15.79, -47.92],
-                {}
-            ).addTo(map_71f3b88ed8409299a76b0b79db4ea710);
+                {"name": "Mercado Premium (Sudoeste) 1029 21.222.324/0001-90"}
+            ).addTo(feature_group_2bf17f1525248035927b76f5f4bd90c7);
         
     
-            var icon_a74f81a113fbe34e98197b006d45b0ed = L.AwesomeMarkers.icon(
+            var icon_a6921937f93664c607e2b7fa73516501 = L.AwesomeMarkers.icon(
                 {"extraClasses": "fa-rotate-0", "icon": "shopping-cart", "iconColor": "white", "markerColor": "green", "prefix": "fa"}
             );
-            marker_1d0bcd23995fdce42bf567d66519b56f.setIcon(icon_a74f81a113fbe34e98197b006d45b0ed);
+            marker_16da17ae83d8dfc24a8346fb7f11a6ae.setIcon(icon_a6921937f93664c607e2b7fa73516501);
         
     
-        var popup_98c8d432a4f9952d85b5f703e45650ef = L.popup({"maxWidth": 320});
+        var popup_a85814f6139501f851b88a0ec237fc6a = L.popup({"maxWidth": 320});
 
         
             
-                var html_07a9b0e49d77349491c37eebcff44c8f = $(`<div id="html_07a9b0e49d77349491c37eebcff44c8f" style="width: 100.0%; height: 100.0%;">     <div style="width: 280px; font-family: 'Segoe UI', sans-serif; font-size: 12px; line-height: 1.5;">         <h4 style="margin:0; color:#1a73e8; font-size:15px; border-bottom: 2px solid #1a73e8; padding-bottom: 5px;">Mercado Premium (Sudoeste)</h4>                  <div style="margin-top: 8px;">             <b>CNPJ:</b> 21.222.324/0001-90<br>             <b>Código:</b> 1029 | <b>Setor:</b> S02<br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Representante:</b> Carlos Souza<br>             <b>Cadastro:</b> 14/06/2019<br>             <b>Visita:</b> Terça (Mensal)<br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Financeiro:</b> Boleto (45 dias)<br>             <b>Limite:</b> R$ 25.000,00<br>             <b>Freezers:</b> 5<br>             <b>Status Mês:</b> <span style="color:green;font-weight:bold;">Comprou</span><br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Contato:</b> (61) 99999-0010<br>             <b>E-mail:</b> cli10@teste.com.br         </div>          <a href="https://www.google.com/maps/dir/?api=1&destination=-15.79,-47.92"             target="_blank"             style="display:block; text-align:center; background:#1a73e8; color:white; padding:10px; border-radius:4px; text-decoration:none; font-weight:bold; margin-top:10px;">            VER TRAJETO GOOGLE MAPS         </a>     </div>     </div>`)[0];
-                popup_98c8d432a4f9952d85b5f703e45650ef.setContent(html_07a9b0e49d77349491c37eebcff44c8f);
+                var html_7ab30a51e3320a2c21ef4bcd9adb4979 = $(`<div id="html_7ab30a51e3320a2c21ef4bcd9adb4979" style="width: 100.0%; height: 100.0%;">     <div style="width: 280px; font-family: 'Segoe UI', sans-serif; font-size: 12px; line-height: 1.5;">         <h4 style="margin:0; color:#1a73e8; font-size:15px; border-bottom: 2px solid #1a73e8; padding-bottom: 5px;">Mercado Premium (Sudoeste)</h4>                  <div style="margin-top: 8px;">             <b>CNPJ:</b> 21.222.324/0001-90<br>             <b>Código:</b> 1029 | <b>Setor:</b> S02<br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Representante:</b> Carlos Souza<br>             <b>Cadastro:</b> 14/06/2019<br>             <b>Visita:</b> Terça (Mensal)<br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Financeiro:</b> Boleto (45 dias)<br>             <b>Limite:</b> R$ 25.000,00<br>             <b>Freezers:</b> 5<br>             <b>Status Mês:</b> <span style="color:green;font-weight:bold;">Comprou</span><br>             <hr style="border:0; border-top:1px solid #eee;">             <b>Contato:</b> (61) 99999-0010<br>             <b>E-mail:</b> cli10@teste.com.br         </div>          <a href="https://www.google.com/maps/dir/?api=1&destination=-15.79,-47.92"             target="_blank"             style="display:block; text-align:center; background:#1a73e8; color:white; padding:10px; border-radius:4px; text-decoration:none; font-weight:bold; margin-top:10px;">            VER TRAJETO GOOGLE MAPS         </a>     </div>     </div>`)[0];
+                popup_a85814f6139501f851b88a0ec237fc6a.setContent(html_7ab30a51e3320a2c21ef4bcd9adb4979);
             
         
 
-        marker_1d0bcd23995fdce42bf567d66519b56f.bindPopup(popup_98c8d432a4f9952d85b5f703e45650ef)
+        marker_16da17ae83d8dfc24a8346fb7f11a6ae.bindPopup(popup_a85814f6139501f851b88a0ec237fc6a)
         ;
 
         
     
+    
+            feature_group_2bf17f1525248035927b76f5f4bd90c7.addTo(map_e6cda76e237a72de1782354a5864d3b1);
+        
+    
+            var feature_group_2bf17f1525248035927b76f5f4bd90c7searchControl = new L.Control.Search({
+                layer: feature_group_2bf17f1525248035927b76f5f4bd90c7,
+                
+                propertyName: 'name',
+                
+                collapsed: false,
+                textPlaceholder: 'Buscar Nome, Código ou CNPJ',
+                position:'topleft',
+            
+                initial: false,
+                
+                hideMarkerOnCollapse: true
+            
+                });
+                feature_group_2bf17f1525248035927b76f5f4bd90c7searchControl.on('search:locationfound', function(e) {
+                    feature_group_2bf17f1525248035927b76f5f4bd90c7.setStyle(function(feature){
+                        return feature.properties.style
+                    })
+                    
+                    if(e.layer._popup)
+                        e.layer.openPopup();
+                })
+                feature_group_2bf17f1525248035927b76f5f4bd90c7searchControl.on('search:collapsed', function(e) {
+                        feature_group_2bf17f1525248035927b76f5f4bd90c7.setStyle(function(feature){
+                            return feature.properties.style
+                    });
+                });
+            map_e6cda76e237a72de1782354a5864d3b1.addControl( feature_group_2bf17f1525248035927b76f5f4bd90c7searchControl );
+
+        
 </script>
 </html>
