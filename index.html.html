@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Mapa de Vendas High Tech</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAt_SgOgFsPosjtTeY1nMJVNBLbmYIBtho"></script>
+    <style>
+        body, html { height: 100%; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+        #map { height: 100%; width: 100%; }
+        
+        #search-wrapper { 
+            position: absolute; top: 20px; left: 50%; transform: translateX(-50%); 
+            z-index: 5; width: 480px; 
+        }
+        
+        #search-container { 
+            background: #2c3e50;
+            padding: 14px; border-radius: 35px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            border: 1px solid #34495e; display: flex; align-items: center;
+        }
+        
+        #search-input { 
+            width: 100%; border: none; outline: none; font-size: 16px; 
+            text-align: center; font-weight: 500; background: transparent; color: #ffffff;
+        }
+        
+        #search-input::placeholder { color: #bdc3c7; }
+        
+        #suggestions { 
+            background: #2c3e50; border-radius: 20px; margin-top: 10px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4); max-height: 250px; 
+            overflow-y: auto; display: none; border: 1px solid #34495e;
+        }
+        
+        .suggestion-item { 
+            padding: 12px 25px; cursor: pointer; border-bottom: 1px solid #34495e; 
+            font-size: 14px; font-weight: 600; color: #4285F4; transition: 0.2s; 
+        }
+        
+        .suggestion-item:hover { background: #34495e; color: #ffffff; }
+        
+        #legend { position: absolute; bottom: 35px; right: 20px; background: white; padding: 15px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); z-index: 5; font-size: 14px; border-left: 5px solid #4285F4; }
+        .legend-row { display: flex; align-items: center; margin-bottom: 8px; font-weight: 600; }
+        .basket-svg { width: 22px; height: 22px; margin-right: 10px; }
+
+        .custom-controls { position: absolute; left: 15px; top: 85px; z-index: 5; display: flex; flex-direction: column; gap: 10px; }
+        .map-btn { 
+            background: white; border: none; width: 45px; height: 45px; border-radius: 10px; 
+            cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.2); 
+            display: flex; align-items: center; justify-content: center; font-size: 22px; color: #555; 
+        }
+    </style>
+</head>
+<body>
+    <div id="search-wrapper">
+        <div id="search-container">
+            <input id="search-input" type="text" placeholder="🔎 Buscar Cliente..." autocomplete="off">
+        </div>
+        <div id="suggestions"></div>
+    </div>
+    
+    <div class="custom-controls">
+        <button class="map-btn" onclick="map.setZoom(map.getZoom() + 1)">+</button>
+        <button class="map-btn" onclick="map.setZoom(map.getZoom() - 1)">−</button>
+        <button class="map-btn" onclick="findMe()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="#4285F4"><path d="M12 8C9.79 8 8 9.79 8 12C8 14.21 9.79 16 12 16C14.21 16 16 14.21 16 12C16 9.79 14.21 8 12 8ZM20.94 11C20.48 6.83 17.17 3.52 13 3.06V1H11V3.06C6.83 3.52 3.52 6.83 3.06 11H1V13H3.06C3.52 17.17 6.83 20.48 11 20.94V23H13V20.94C17.17 20.48 20.48 17.17 20.94 13H23V11H20.94ZM12 19C8.13 19 5 15.87 5 12C5 8.13 8.13 5 12 5C15.87 5 19 8.13 19 12C19 15.87 15.87 19 12 19Z"/></svg>
+        </button>
+    </div>
+
+    <div id="legend">
+        <b style="display:block; margin-bottom:10px; color:#444;">STATUS DO MÊS</b>
+        <div class="legend-row">
+            <svg class="basket-svg" viewBox="0 0 24 24" fill="#00FF7F"><path d="M17.21 9l-4.38-6.56c-.19-.28-.51-.42-.83-.42-.32 0-.64.14-.83.43L6.79 9H2c-.55 0-1 .45-1 1 0 .09.01.18.04.27l2.54 9.27c.23.84 1 1.46 1.87 1.46h13.1c.87 0 1.64-.62 1.87-1.46l2.54-9.27L23 10c0-.55-.45-1-1-1h-4.79zM9 9l3-4.4L15 9H9z"/></svg>
+            <span style="color:#008F4F;">Comprou</span>
+        </div>
+        <div class="legend-row">
+            <svg class="basket-svg" viewBox="0 0 24 24" fill="#FF3131"><path d="M17.21 9l-4.38-6.56c-.19-.28-.51-.42-.83-.42-.32 0-.64.14-.83.43L6.79 9H2c-.55 0-1 .45-1 1 0 .09.01.18.04.27l2.54 9.27c.23.84 1 1.46 1.87 1.46h13.1c.87 0 1.64-.62 1.87-1.46l2.54-9.27L23 10c0-.55-.45-1-1-1h-4.79zM9 9l3-4.4L15 9H9z"/></svg>
+            <span style="color:#D32F2F;">Não Comprou</span>
+        </div>
+        <div class="legend-row">
+            <svg class="basket-svg" viewBox="0 0 24 24" fill="#7f8c8d"><path d="M17.21 9l-4.38-6.56c-.19-.28-.51-.42-.83-.42-.32 0-.64.14-.83.43L6.79 9H2c-.55 0-1 .45-1 1 0 .09.01.18.04.27l2.54 9.27c.23.84 1 1.46 1.87 1.46h13.1c.87 0 1.64-.62 1.87-1.46l2.54-9.27L23 10c0-.55-.45-1-1-1h-4.79zM9 9l3-4.4L15 9H9z"/></svg>
+            <span style="color:#7f8c8d;">Inativo</span>
+        </div>
+    </div>
+
+    <div id="map"></div>
+
+    <script>
+        var map, markers = [], infoWindow, userMarker, data = [{'nome': 'Super. Alvorada (Asa Sul)', 'lat': -15.815, 'lng': -47.893, 'cor_hex': '#00FF7F', 'search': 'super. alvorada (asa sul) 12.345.678/0001-99 1020', 'content': "\n            <div style='width:280px; font-family:sans-serif;'>\n                <div style='background:#f4f4f4; padding:10px; border-radius:8px; border-bottom:4px solid #00FF7F;'>\n                    <b style='font-size:14px;'>Super. Alvorada (Asa Sul)</b><br>\n                    <small><b>CNPJ:</b> 12.345.678/0001-99 | <b>Cód:</b> 1020</small>\n                </div>\n                <div style='padding:10px; font-size:12px;'>\n                    <b>Setor:</b> S01 | <b>Seg:</b> Supermercado<br>\n                    <b>Pagamento:</b> Boleto | <b>Limite:</b> R$ 15.000,00\n                </div>\n                <a href='https://www.google.com/maps/dir/?api=1&destination=-15.815,-47.893' target='_blank' \n                   style='display:block; text-align:center; background:#4285F4; color:white; padding:10px; border-radius:25px; text-decoration:none; font-weight:bold;'>\n                   TRAÇAR ROTA\n                </a>\n            </div>\n        "}, {'nome': 'Padaria Central (Taguati.)', 'lat': -15.833, 'lng': -48.057, 'cor_hex': '#FF3131', 'search': 'padaria central (taguati.) 98.765.432/0001-00 1021', 'content': "\n            <div style='width:280px; font-family:sans-serif;'>\n                <div style='background:#f4f4f4; padding:10px; border-radius:8px; border-bottom:4px solid #FF3131;'>\n                    <b style='font-size:14px;'>Padaria Central (Taguati.)</b><br>\n                    <small><b>CNPJ:</b> 98.765.432/0001-00 | <b>Cód:</b> 1021</small>\n                </div>\n                <div style='padding:10px; font-size:12px;'>\n                    <b>Setor:</b> S03 | <b>Seg:</b> Padaria<br>\n                    <b>Pagamento:</b> Pix | <b>Limite:</b> R$ 5.000,00\n                </div>\n                <a href='https://www.google.com/maps/dir/?api=1&destination=-15.833,-48.057' target='_blank' \n                   style='display:block; text-align:center; background:#4285F4; color:white; padding:10px; border-radius:25px; text-decoration:none; font-weight:bold;'>\n                   TRAÇAR ROTA\n                </a>\n            </div>\n        "}, {'nome': 'Mini Mercado Silva (Ceilân.)', 'lat': -15.82, 'lng': -48.11, 'cor_hex': '#00FF7F', 'search': 'mini mercado silva (ceilân.) 11.222.333/0001-11 1022', 'content': "\n            <div style='width:280px; font-family:sans-serif;'>\n                <div style='background:#f4f4f4; padding:10px; border-radius:8px; border-bottom:4px solid #00FF7F;'>\n                    <b style='font-size:14px;'>Mini Mercado Silva (Ceilân.)</b><br>\n                    <small><b>CNPJ:</b> 11.222.333/0001-11 | <b>Cód:</b> 1022</small>\n                </div>\n                <div style='padding:10px; font-size:12px;'>\n                    <b>Setor:</b> S01 | <b>Seg:</b> Mercado<br>\n                    <b>Pagamento:</b> Boleto | <b>Limite:</b> R$ 2.500,00\n                </div>\n                <a href='https://www.google.com/maps/dir/?api=1&destination=-15.82,-48.11' target='_blank' \n                   style='display:block; text-align:center; background:#4285F4; color:white; padding:10px; border-radius:25px; text-decoration:none; font-weight:bold;'>\n                   TRAÇAR ROTA\n                </a>\n            </div>\n        "}, {'nome': 'Açougue Ouro (Guará)', 'lat': -15.825, 'lng': -47.98, 'cor_hex': '#00FF7F', 'search': 'açougue ouro (guará) 44.555.666/0001-22 1023', 'content': "\n            <div style='width:280px; font-family:sans-serif;'>\n                <div style='background:#f4f4f4; padding:10px; border-radius:8px; border-bottom:4px solid #00FF7F;'>\n                    <b style='font-size:14px;'>Açougue Ouro (Guará)</b><br>\n                    <small><b>CNPJ:</b> 44.555.666/0001-22 | <b>Cód:</b> 1023</small>\n                </div>\n                <div style='padding:10px; font-size:12px;'>\n                    <b>Setor:</b> S02 | <b>Seg:</b> Açougue<br>\n                    <b>Pagamento:</b> Boleto | <b>Limite:</b> R$ 8.000,00\n                </div>\n                <a href='https://www.google.com/maps/dir/?api=1&destination=-15.825,-47.98' target='_blank' \n                   style='display:block; text-align:center; background:#4285F4; color:white; padding:10px; border-radius:25px; text-decoration:none; font-weight:bold;'>\n                   TRAÇAR ROTA\n                </a>\n            </div>\n        "}, {'nome': 'Mercearia Vila (Sobradinho)', 'lat': -15.65, 'lng': -47.79, 'cor_hex': '#7f8c8d', 'search': 'mercearia vila (sobradinho) 77.888.999/0001-33 1024', 'content': "\n            <div style='width:280px; font-family:sans-serif;'>\n                <div style='background:#f4f4f4; padding:10px; border-radius:8px; border-bottom:4px solid #7f8c8d;'>\n                    <b style='font-size:14px;'>Mercearia Vila (Sobradinho)</b><br>\n                    <small><b>CNPJ:</b> 77.888.999/0001-33 | <b>Cód:</b> 1024</small>\n                </div>\n                <div style='padding:10px; font-size:12px;'>\n                    <b>Setor:</b> S03 | <b>Seg:</b> Mercearia<br>\n                    <b>Pagamento:</b> Pix | <b>Limite:</b> R$ 4.500,00\n                </div>\n                <a href='https://www.google.com/maps/dir/?api=1&destination=-15.65,-47.79' target='_blank' \n                   style='display:block; text-align:center; background:#4285F4; color:white; padding:10px; border-radius:25px; text-decoration:none; font-weight:bold;'>\n                   TRAÇAR ROTA\n                </a>\n            </div>\n        "}, {'nome': 'Hortifruti Nat. (Águas Cl.)', 'lat': -15.84, 'lng': -48.02, 'cor_hex': '#00FF7F', 'search': 'hortifruti nat. (águas cl.) 10.203.040/0001-50 1025', 'content': "\n            <div style='width:280px; font-family:sans-serif;'>\n                <div style='background:#f4f4f4; padding:10px; border-radius:8px; border-bottom:4px solid #00FF7F;'>\n                    <b style='font-size:14px;'>Hortifruti Nat. (Águas Cl.)</b><br>\n                    <small><b>CNPJ:</b> 10.203.040/0001-50 | <b>Cód:</b> 1025</small>\n                </div>\n                <div style='padding:10px; font-size:12px;'>\n                    <b>Setor:</b> S04 | <b>Seg:</b> Hortifruti<br>\n                    <b>Pagamento:</b> Boleto | <b>Limite:</b> R$ 10.000,00\n                </div>\n                <a href='https://www.google.com/maps/dir/?api=1&destination=-15.84,-48.02' target='_blank' \n                   style='display:block; text-align:center; background:#4285F4; color:white; padding:10px; border-radius:25px; text-decoration:none; font-weight:bold;'>\n                   TRAÇAR ROTA\n                </a>\n            </div>\n        "}, {'nome': 'Posto Sul (Asa Norte)', 'lat': -15.76, 'lng': -47.87, 'cor_hex': '#7f8c8d', 'search': 'posto sul (asa norte) 60.708.090/0001-60 1026', 'content': "\n            <div style='width:280px; font-family:sans-serif;'>\n                <div style='background:#f4f4f4; padding:10px; border-radius:8px; border-bottom:4px solid #7f8c8d;'>\n                    <b style='font-size:14px;'>Posto Sul (Asa Norte)</b><br>\n                    <small><b>CNPJ:</b> 60.708.090/0001-60 | <b>Cód:</b> 1026</small>\n                </div>\n                <div style='padding:10px; font-size:12px;'>\n                    <b>Setor:</b> S02 | <b>Seg:</b> Posto<br>\n                    <b>Pagamento:</b> Pix | <b>Limite:</b> R$ 3.000,00\n                </div>\n                <a href='https://www.google.com/maps/dir/?api=1&destination=-15.76,-47.87' target='_blank' \n                   style='display:block; text-align:center; background:#4285F4; color:white; padding:10px; border-radius:25px; text-decoration:none; font-weight:bold;'>\n                   TRAÇAR ROTA\n                </a>\n            </div>\n        "}, {'nome': 'Lanchonete Zé (Gama)', 'lat': -16.02, 'lng': -48.06, 'cor_hex': '#7f8c8d', 'search': 'lanchonete zé (gama) 13.141.516/0001-70 1027', 'content': "\n            <div style='width:280px; font-family:sans-serif;'>\n                <div style='background:#f4f4f4; padding:10px; border-radius:8px; border-bottom:4px solid #7f8c8d;'>\n                    <b style='font-size:14px;'>Lanchonete Zé (Gama)</b><br>\n                    <small><b>CNPJ:</b> 13.141.516/0001-70 | <b>Cód:</b> 1027</small>\n                </div>\n                <div style='padding:10px; font-size:12px;'>\n                    <b>Setor:</b> S04 | <b>Seg:</b> Lanchonete<br>\n                    <b>Pagamento:</b> Dinheiro | <b>Limite:</b> R$ 1.200,00\n                </div>\n                <a href='https://www.google.com/maps/dir/?api=1&destination=-16.02,-48.06' target='_blank' \n                   style='display:block; text-align:center; background:#4285F4; color:white; padding:10px; border-radius:25px; text-decoration:none; font-weight:bold;'>\n                   TRAÇAR ROTA\n                </a>\n            </div>\n        "}, {'nome': 'Rest. Sabor (Samambaia)', 'lat': -15.88, 'lng': -48.08, 'cor_hex': '#00FF7F', 'search': 'rest. sabor (samambaia) 17.181.920/0001-80 1028', 'content': "\n            <div style='width:280px; font-family:sans-serif;'>\n                <div style='background:#f4f4f4; padding:10px; border-radius:8px; border-bottom:4px solid #00FF7F;'>\n                    <b style='font-size:14px;'>Rest. Sabor (Samambaia)</b><br>\n                    <small><b>CNPJ:</b> 17.181.920/0001-80 | <b>Cód:</b> 1028</small>\n                </div>\n                <div style='padding:10px; font-size:12px;'>\n                    <b>Setor:</b> S01 | <b>Seg:</b> Restaurante<br>\n                    <b>Pagamento:</b> Boleto | <b>Limite:</b> R$ 6.000,00\n                </div>\n                <a href='https://www.google.com/maps/dir/?api=1&destination=-15.88,-48.08' target='_blank' \n                   style='display:block; text-align:center; background:#4285F4; color:white; padding:10px; border-radius:25px; text-decoration:none; font-weight:bold;'>\n                   TRAÇAR ROTA\n                </a>\n            </div>\n        "}, {'nome': 'Mercado Premium (Sudoeste)', 'lat': -15.79, 'lng': -47.92, 'cor_hex': '#00FF7F', 'search': 'mercado premium (sudoeste) 21.222.324/0001-90 1029', 'content': "\n            <div style='width:280px; font-family:sans-serif;'>\n                <div style='background:#f4f4f4; padding:10px; border-radius:8px; border-bottom:4px solid #00FF7F;'>\n                    <b style='font-size:14px;'>Mercado Premium (Sudoeste)</b><br>\n                    <small><b>CNPJ:</b> 21.222.324/0001-90 | <b>Cód:</b> 1029</small>\n                </div>\n                <div style='padding:10px; font-size:12px;'>\n                    <b>Setor:</b> S02 | <b>Seg:</b> Mercado Premium<br>\n                    <b>Pagamento:</b> Boleto | <b>Limite:</b> R$ 25.000,00\n                </div>\n                <a href='https://www.google.com/maps/dir/?api=1&destination=-15.79,-47.92' target='_blank' \n                   style='display:block; text-align:center; background:#4285F4; color:white; padding:10px; border-radius:25px; text-decoration:none; font-weight:bold;'>\n                   TRAÇAR ROTA\n                </a>\n            </div>\n        "}];
+
+        function getModernPin(color) {
+            return {
+                path: 'M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-12-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z',
+                fillColor: color,
+                fillOpacity: 1,
+                strokeWeight: 2,
+                strokeColor: '#FFFFFF',
+                scale: 2,
+                anchor: new google.maps.Point(12, 22)
+            };
+        }
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), { 
+                zoom: 11, center: {lat: -15.7938, lng: -47.8827}, zoomControl: false 
+            });
+            infoWindow = new google.maps.InfoWindow();
+            
+            data.forEach(function(item) {
+                var marker = new google.maps.Marker({
+                    position: {lat: item.lat, lng: item.lng}, 
+                    map: map, 
+                    icon: getModernPin(item.cor_hex),
+                    searchTag: item.search, 
+                    nome: item.nome, 
+                    content: item.content
+                });
+                marker.addListener('click', function() { infoWindow.setContent(item.content); infoWindow.open(map, marker); });
+                markers.push(marker);
+            });
+
+            const input = document.getElementById('search-input'), suggBox = document.getElementById('suggestions');
+            input.addEventListener('input', function(e) {
+                var term = e.target.value.toLowerCase(); suggBox.innerHTML = '';
+                if (term.length > 0) {
+                    let count = 0;
+                    markers.forEach(function(m) {
+                        if (m.searchTag.includes(term)) {
+                            m.setVisible(true);
+                            if (count < 6) {
+                                let div = document.createElement('div'); div.className = 'suggestion-item'; div.innerHTML = '📍 ' + m.nome;
+                                div.onclick = function() { map.setCenter(m.getPosition()); map.setZoom(17); google.maps.event.trigger(m, 'click'); suggBox.style.display = 'none'; input.value = m.nome; };
+                                suggBox.appendChild(div); count++;
+                            }
+                        } else { m.setVisible(false); }
+                    });
+                    suggBox.style.display = count > 0 ? 'block' : 'none';
+                } else { markers.forEach(m => m.setVisible(true)); suggBox.style.display = 'none'; }
+            });
+        }
+
+        function findMe() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(p) {
+                    var pos = {lat: p.coords.latitude, lng: p.coords.longitude};
+                    map.setCenter(pos); map.setZoom(16);
+                    if (userMarker) userMarker.setMap(null);
+                    userMarker = new google.maps.Marker({
+                        position: pos, map: map, icon: { path: google.maps.SymbolPath.CIRCLE, scale: 10, fillColor: "#4285F4", fillOpacity: 1, strokeColor: "white", strokeWeight: 3 }
+                    });
+                });
+            }
+        }
+        google.maps.event.addDomListener(window, 'load', initMap);
+    </script>
+</body>
+</html>
